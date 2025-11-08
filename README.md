@@ -462,6 +462,4 @@ The model uses the following engineered features:
 ---
 <<<<<<< HEAD
 
-**Made with ❤️ by MohamedImran10** | Last Updated: November 8, 2025
-=======
->>>>>>> d5a68593c9c1fc5422e1497ca131bd479b4f703f
+**Made with ❤️ by Mohamed Imran** 
