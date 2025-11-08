@@ -4,9 +4,14 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, roc_auc_score
 import pickle
+import os
+
+# Get the project root directory (parent of model directory)
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+dataset_path = os.path.join(project_root, "default of credit card clients.xls")
 
 # Load dataset
-df = pd.read_excel("default of credit card clients.xls", header=1)
+df = pd.read_excel(dataset_path, header=1)
 
 # Rename target column for clarity
 df.rename(columns={"default payment next month": "default"}, inplace=True)
@@ -42,8 +47,9 @@ print("\n📊 Classification Report:")
 print(classification_report(y_test, y_pred))
 print("ROC AUC:", roc_auc_score(y_test, model.predict_proba(X_test_scaled)[:, 1]))
 
-# Save model and scaler
-pickle.dump(model, open("model.pkl", "wb"))
-pickle.dump(scaler, open("scaler.pkl", "wb"))
+# Save model and scaler in the model directory
+model_dir = os.path.dirname(os.path.abspath(__file__))
+pickle.dump(model, open(os.path.join(model_dir, "model.pkl"), "wb"))
+pickle.dump(scaler, open(os.path.join(model_dir, "scaler.pkl"), "wb"))
 
-print("\n✅ Model and Scaler saved successfully.")
+print("\n✅ Model and Scaler saved successfully to model/ directory.")

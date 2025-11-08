@@ -3,7 +3,6 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.3.2-green.svg)](https://flask.palletsprojects.com/)
 [![Machine Learning](https://img.shields.io/badge/ML-scikit--learn-orange.svg)](https://scikit-learn.org/)
-[![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 
 ## 🧠 Project Overview
 
@@ -158,7 +157,7 @@ SmartLoan_AI/
 ├── app.py                          # Flask application entry point
 ├── requirements.txt                # Python dependencies
 ├── Procfile                        # Deployment configuration
-├── predictions_log.csv             # Prediction history log
+├── default of credit card clients.xls # Training dataset
 │
 ├── model/
 │   ├── train_model.py              # Model training script
@@ -246,7 +245,7 @@ pay_amt1: float
 
 ## 📊 Prediction Logging
 
-All predictions are automatically logged to `predictions_log.csv`:
+When predictions are made, they are automatically logged to `predictions_log.csv`:
 
 ```csv
 timestamp,limit_bal,age,pay_0,pay_2,bill_amt1,pay_amt1,pred_label,pred_prob
@@ -258,6 +257,8 @@ This enables:
 - Historical analysis
 - Performance tracking
 - Audit trails
+
+**Note**: The log file is generated automatically on first prediction and stored locally.
 
 ---
 
@@ -402,7 +403,7 @@ Contributions are welcome! To contribute:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see LICENSE file for details.
+This project is open source and available on GitHub. For more information about licensing, please contact the repository owner.
 
 ---
 
@@ -425,10 +426,10 @@ This project is licensed under the MIT License - see LICENSE file for details.
 
 ## 🔐 Privacy & Security
 
-- No data is permanently stored except prediction logs
+- Predictions are logged locally for audit trails
 - Model runs locally on your server
-- No third-party API calls
-- GDPR-compliant logging
+- No third-party API calls required
+- Data handling follows best practices
 
 ---
 
@@ -460,4 +461,4 @@ The model uses the following engineered features:
 
 ---
 
-**Made with ❤️ by AI** | Last Updated: November 7, 2025
+**Made with ❤️ by MohamedImran10** | Last Updated: November 8, 2025

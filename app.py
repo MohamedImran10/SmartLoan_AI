@@ -1,12 +1,31 @@
 from flask import Flask, render_template, request, jsonify
 import pickle
 import numpy as np
+import os
+import sys
 
 app = Flask(__name__)
 
-# Load model and scaler
-model = pickle.load(open('model.pkl', 'rb'))
-scaler = pickle.load(open('scaler.pkl', 'rb'))
+# Load model and scaler from model directory
+model_path = os.path.join('model', 'model.pkl')
+scaler_path = os.path.join('model', 'scaler.pkl')
+
+# Check if model files exist
+if not os.path.exists(model_path) or not os.path.exists(scaler_path):
+    print(f"❌ Error: Model files not found!")
+    print(f"   Expected: {os.path.abspath(model_path)}")
+    print(f"   Expected: {os.path.abspath(scaler_path)}")
+    print(f"\n📝 To create the model, run:")
+    print(f"   python model/train_model.py")
+    sys.exit(1)
+
+try:
+    model = pickle.load(open(model_path, 'rb'))
+    scaler = pickle.load(open(scaler_path, 'rb'))
+    print("✅ Model and Scaler loaded successfully!")
+except Exception as e:
+    print(f"❌ Error loading model files: {e}")
+    sys.exit(1)
 
 @app.route('/')
 def home():
