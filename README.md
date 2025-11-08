@@ -459,5 +459,3 @@ The model uses the following engineered features:
 - Cross-validation for robustness
 
 ---
-
-**Made with ❤️ by AI** | Last Updated: November 7, 2025
