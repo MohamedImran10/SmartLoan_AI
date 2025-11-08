@@ -42,14 +42,16 @@ def predict():
         bill_amt1 = float(request.form['bill_amt1'])
         pay_amt1 = float(request.form['pay_amt1'])
 
-        # Simplified feature subset matching trained model
-        # Fill missing with zeros for simplicity
+        # Create feature array matching trained model features
         features = np.array([[limit_bal, age, pay_0, pay_2,
                               0, 0, 0, 0,  # PAY_3–PAY_6
                               bill_amt1, 0, 0, 0, 0, 0,  # BILL_AMT2–6
                               pay_amt1, 0, 0, 0, 0, 0]])  # PAY_AMT2–6
 
+        # Transform features using scaler (without feature names)
         scaled = scaler.transform(features)
+        
+        # Make prediction
         prob = model.predict_proba(scaled)[0][1]
         
         # Determine risk level (1 = default, 0 = no default)
@@ -60,8 +62,10 @@ def predict():
             "pred_prob": float(prob)
         })
 
+    except ValueError as e:
+        return jsonify({"error": f"Invalid input values: {str(e)}"}), 400
     except Exception as e:
-        return jsonify({"error": str(e)}), 400
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)
